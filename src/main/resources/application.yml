@@ -1,0 +1,13 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+  data:
+    rest.base-path: api
+    cassandra:
+      keyspaceName: messages
+      contactPoints: localhost
+      port: 9042
+  redis:
+    host: localhost
+    port: 6379
