@@ -1,0 +1,17 @@
+type Costumer {
+	id: ID!
+	name: String!
+	age: Int
+	country: String
+}
+
+# Root
+type Query {
+	findAllCostumers: [Costumer]!
+	countCostumers: Long!
+}
+
+# Root
+type Mutation {
+	createCostumer(name: String!, age: Int, country: String): Costumer!
+}
