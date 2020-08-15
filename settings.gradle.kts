@@ -1,1 +1,1 @@
-rootProject.name = "messages"
+rootProject.name = "spring-data"
