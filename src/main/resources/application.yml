@@ -1,0 +1,12 @@
+## configurations
+spring:
+  data:
+    rest:
+      basePath: /api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: password
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5

@@ -1,24 +1,14 @@
 version: '3'
 
 services:
-  rabbitmq:
-    image: rabbitmq:3.8-management
-    ports:
-      - '5672:5672'
-      - '15672:15672'
-  cassandra:
-    image: cassandra:3.11.2
-    ports:
-      - "9042:9042"
+  postgres:
+    image: postgres
     environment:
-      - "MAX_HEAP_SIZE=256M"
-      - "HEAP_NEWSIZE=128M"
-    restart: always
-    healthcheck:
-      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
-      interval: 15s
-      timeout: 10s
-      retries: 10
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - '5432:5432'
   redis:
     image: redis
     ports:
