@@ -1,6 +1,6 @@
 package com.analog.alex.data.item.model
 
-import com.analog.alex.data.costumer.model.Costumer
+import com.analog.alex.data.customer.model.Customer
 import com.analog.alex.data.store.model.Store
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -28,8 +28,8 @@ data class Item(
     val brand: String,
 
     @ManyToOne
-    @JoinColumn(name = "costumer", referencedColumnName = "id")
-    val costumer: Costumer,
+    @JoinColumn(name = "customer", referencedColumnName = "id")
+    val customer: Customer,
 
     @ManyToMany(mappedBy = "items")
     val stores: Set<Store> = emptySet()

@@ -1,4 +1,11 @@
-CREATE TABLE IF NOT EXISTS costumers (
+CREATE TABLE IF NOT EXISTS app_users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR UNIQUE NOT NULL,
+    password VARCHAR NOT NULL,
+    role CHAR(4) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS customers (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     age INTEGER NOT NULL CHECK (age > 0),
@@ -6,15 +13,9 @@ CREATE TABLE IF NOT EXISTS costumers (
     app_user SMALLINT references app_users(id)
 );
 
-CREATE TABLE IF NOT EXISTS app_users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR NOT NULL,
-    password VARCHAR NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
-    costumer SMALLINT references costumers(id),
+    customer SMALLINT references customers(id),
     name VARCHAR NOT NULL,
     price INTEGER NOT NULL,
     brand VARCHAR NOT NULL

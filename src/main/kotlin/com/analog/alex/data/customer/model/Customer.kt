@@ -1,4 +1,4 @@
-package com.analog.alex.data.costumer.model
+package com.analog.alex.data.customer.model
 
 import com.analog.alex.data.item.model.Item
 import com.analog.alex.data.user.model.User
@@ -12,8 +12,8 @@ import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
 import javax.persistence.OneToOne
 
-@Entity(name = "costumers")
-data class Costumer(
+@Entity(name = "customers")
+data class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,11 +28,11 @@ data class Costumer(
     @Column(name = "country")
     val country: String,
 
-    @OneToOne(cascade = [CascadeType.ALL])
+    @OneToOne(cascade = [CascadeType.REMOVE])
     @JoinColumn(name = "app_user", referencedColumnName = "id")
     val user: User,
 
-    @OneToMany(mappedBy = "costumer")
+    @OneToMany(mappedBy = "customer")
     val items: Set<Item> = emptySet()
 ) {
     override fun hashCode(): Int {

@@ -1,13 +1,14 @@
 package com.analog.alex.data.user.model
 
-import com.analog.alex.data.costumer.model.Costumer
+import com.analog.alex.data.customer.model.Customer
 import com.fasterxml.jackson.annotation.JsonProperty
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToOne
+import javax.persistence.*
+
+enum class Role {
+    ADMN,
+    USER,
+    GUST
+}
 
 @Entity(name = "app_users")
 data class User(
@@ -23,8 +24,11 @@ data class User(
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     val password: String,
 
+    @Column(name = "role")
+    val role: String = Role.GUST.toString(),
+
     @OneToOne(mappedBy = "user")
-    val costumer: Costumer
+    val customer: Customer? = null
 ) {
     override fun hashCode(): Int {
         return username.hashCode() xor password.hashCode() + (id?.toInt() ?: 0)

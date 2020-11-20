@@ -1,14 +1,7 @@
 package com.analog.alex.data.store.model
 
 import com.analog.alex.data.item.model.Item
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
+import javax.persistence.*
 
 @Entity(name = "stores")
 data class Store(
@@ -26,7 +19,7 @@ data class Store(
     @Column(name = "location")
     val location: String,
 
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.REMOVE])
     @JoinTable(
         name = "item_to_store",
         joinColumns = [JoinColumn(name = "store", referencedColumnName = "id")],
