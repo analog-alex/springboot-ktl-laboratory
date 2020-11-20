@@ -12,9 +12,3 @@ spring:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
-
-flyway:
-  url: jdbc:postgresql://localhost:5432/db
-  schemas: USER
-  user: postgres
-  password: password
