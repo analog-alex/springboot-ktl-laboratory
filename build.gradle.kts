@@ -34,7 +34,7 @@ dependencies {
 
     // non Spring Boot dependencies
     implementation("org.postgresql:postgresql")
-    implementation("org.flywaydb:flyway-core:5.2.2")
+    implementation("org.flywaydb:flyway-core")
 
     // extra Kotlin stuff
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
