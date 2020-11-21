@@ -1,14 +1,14 @@
 package com.analog.alex.data.utils
 
-import com.analog.alex.data.customer.model.Customer
-import com.analog.alex.data.customer.repository.CustomerRepository
-import com.analog.alex.data.item.model.Item
-import com.analog.alex.data.item.repository.ItemRepository
-import com.analog.alex.data.store.model.Store
-import com.analog.alex.data.store.repository.StoreRepository
-import com.analog.alex.data.user.model.Role
-import com.analog.alex.data.user.model.User
-import com.analog.alex.data.user.respository.UserRepository
+import com.analog.alex.data.entities.customer.model.Customer
+import com.analog.alex.data.entities.customer.repository.CustomerRepository
+import com.analog.alex.data.entities.item.model.Item
+import com.analog.alex.data.entities.item.repository.ItemRepository
+import com.analog.alex.data.entities.store.model.Store
+import com.analog.alex.data.entities.store.repository.StoreRepository
+import com.analog.alex.data.entities.user.model.Role
+import com.analog.alex.data.entities.user.model.User
+import com.analog.alex.data.entities.user.respository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Profile
@@ -49,8 +49,8 @@ class DataInjectorOnStartUp(
         logger.info("Inject Costumers")
 
         val costumers = listOf(
-            Customer(name = "Costumer 1", age = 29, country = "PT", user = users[0]),
-            Customer(name = "Costumer 2", age = 29, country = "US", user = users[1]),
+            Customer(name = "Costumer 1", age = 29, country = "PT", user = users[0], purse = 10000),
+            Customer(name = "Costumer 2", age = 29, country = "US", user = users[1], purse = 200),
             Customer(name = "Costumer 3", age = 29, country = "UK", user = users[2]),
             Customer(name = "Costumer 4", age = 29, country = "FR", user = users[3])
         ).map(customerRepository::save)

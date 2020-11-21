@@ -1,6 +1,6 @@
-package com.analog.alex.data.user.model
+package com.analog.alex.data.entities.user.model
 
-import com.analog.alex.data.customer.model.Customer
+import com.analog.alex.data.entities.customer.model.Customer
 import com.fasterxml.jackson.annotation.JsonProperty
 import javax.persistence.*
 
@@ -27,7 +27,7 @@ data class User(
     @Column(name = "role")
     val role: String = Role.GUST.toString(),
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     val customer: Customer? = null
 ) {
     override fun hashCode(): Int {

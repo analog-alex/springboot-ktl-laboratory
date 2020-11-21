@@ -1,7 +1,7 @@
-package com.analog.alex.data.customer.repository
+package com.analog.alex.data.entities.customer.repository
 
-import com.analog.alex.data.customer.model.Customer
-import com.analog.alex.data.user.model.User
+import com.analog.alex.data.entities.customer.model.Customer
+import com.analog.alex.data.entities.user.model.User
 import com.analog.alex.data.utils.Constants
 import com.analog.alex.data.utils.oneIfNull
 import org.springframework.jdbc.core.JdbcTemplate

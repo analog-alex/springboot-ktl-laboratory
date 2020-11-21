@@ -1,6 +1,6 @@
-package com.analog.alex.data.customer.repository
+package com.analog.alex.data.entities.customer.repository
 
-import com.analog.alex.data.customer.model.Customer
+import com.analog.alex.data.entities.customer.model.Customer
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 

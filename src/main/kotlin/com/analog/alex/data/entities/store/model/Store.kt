@@ -1,6 +1,6 @@
-package com.analog.alex.data.store.model
+package com.analog.alex.data.entities.store.model
 
-import com.analog.alex.data.item.model.Item
+import com.analog.alex.data.entities.item.model.Item
 import javax.persistence.*
 
 @Entity(name = "stores")
@@ -19,7 +19,7 @@ data class Store(
     @Column(name = "location")
     val location: String,
 
-    @ManyToMany(cascade = [CascadeType.REMOVE])
+    @ManyToMany(cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
     @JoinTable(
         name = "item_to_store",
         joinColumns = [JoinColumn(name = "store", referencedColumnName = "id")],

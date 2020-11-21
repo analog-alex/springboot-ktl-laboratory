@@ -1,6 +1,6 @@
-package com.analog.alex.data.user.respository
+package com.analog.alex.data.entities.user.respository
 
-import com.analog.alex.data.user.model.User
+import com.analog.alex.data.entities.user.model.User
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 import javax.persistence.criteria.Predicate
