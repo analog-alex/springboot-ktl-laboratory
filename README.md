@@ -9,7 +9,7 @@ The goal of each of the experiments is to serve as a kind of cheat sheet of how 
 
 It separates the different experiments with _git_ branches.
 
-##  Usages
+##  Experiments
 ### Spring Data
 
 | Branch        | Link          |
