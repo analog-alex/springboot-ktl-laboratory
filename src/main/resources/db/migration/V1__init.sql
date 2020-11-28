@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS app_users (
     id SERIAL PRIMARY KEY,
     username VARCHAR UNIQUE NOT NULL,
     password VARCHAR NOT NULL,
-    role CHAR(4) NOT NULL
+    role CHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS customers (

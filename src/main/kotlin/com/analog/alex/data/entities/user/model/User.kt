@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import javax.persistence.*
 
 enum class Role {
-    ADMN,
+    ADMIN,
     USER,
-    GUST
+    GUEST
 }
 
 @Entity(name = "app_users")
@@ -25,7 +25,8 @@ data class User(
     val password: String,
 
     @Column(name = "role")
-    val role: String = Role.GUST.toString(),
+    @Enumerated(EnumType.STRING)
+    val role: Role = Role.GUEST,
 
     @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     val customer: Customer? = null

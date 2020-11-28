@@ -1,12 +1,13 @@
 package com.analog.alex.data.entities.user.respository
 
+import com.analog.alex.data.entities.user.model.Role
 import com.analog.alex.data.entities.user.model.User
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 import javax.persistence.criteria.Predicate
 
 interface CustomUserRepository {
-    fun fundByFields(username: String?, role: String?): Collection<User>
+    fun findByFields(username: String?, role: Role?): Collection<User>
 }
 
 @Repository
@@ -14,7 +15,7 @@ class CustomUserRepositoryImpl(
     val entityManager: EntityManager
 ) : CustomUserRepository {
 
-    override fun fundByFields(username: String?, role: String?): Collection<User> {
+    override fun findByFields(username: String?, role: Role?): Collection<User> {
         val criteriaBuilder = entityManager.criteriaBuilder
         val queryUser = criteriaBuilder.createQuery(User::class.java)
 

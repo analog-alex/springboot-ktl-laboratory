@@ -37,10 +37,10 @@ class DataInjectorOnStartUp(
         logger.info("Inject Users")
 
         val users = listOf(
-            User(username = "user1", password = "password1", role = Role.ADMN.toString()),
-            User(username = "user2", password = "password2", role = Role.USER.toString()),
-            User(username = "user3", password = "password3", role = Role.USER.toString()),
-            User(username = "user4", password = "password4", role = Role.USER.toString())
+            User(username = "user1", password = "password1", role = Role.ADMIN),
+            User(username = "user2", password = "password2", role = Role.USER),
+            User(username = "user3", password = "password3", role = Role.USER),
+            User(username = "user4", password = "password4", role = Role.GUEST)
         ).map(userRepository::save)
 
 

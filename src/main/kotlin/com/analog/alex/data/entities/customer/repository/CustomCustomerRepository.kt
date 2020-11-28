@@ -1,6 +1,7 @@
 package com.analog.alex.data.entities.customer.repository
 
 import com.analog.alex.data.entities.customer.model.Customer
+import com.analog.alex.data.entities.user.model.Role
 import com.analog.alex.data.entities.user.model.User
 import com.analog.alex.data.utils.Constants
 import com.analog.alex.data.utils.oneIfNull
@@ -31,7 +32,7 @@ class CustomCustomerRepositoryImpl(
                 id = rs.getLong("app_user"),
                 username = rs.getString("username"),
                 password = "******",
-                role = rs.getString("role"),
+                role = Role.valueOf(rs.getString("role")),
                 customer = null
             )
         )
