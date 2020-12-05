@@ -1,4 +1,3 @@
 package com.analog.alex.security.user.model
 
-class UserCredentials {
-}
+data class UserCredentials(val username: String, val password: String)
