@@ -10,7 +10,7 @@ data class User(
     @Id val id: String,
     @Indexed(unique = true) val username: String,
     val password: String,
-    val role: Role,
+    val roles: Set<Role>,
     val createdAt: LocalDateTime
 )
 
