@@ -1,9 +1,9 @@
 package com.analog.alex.security.authentication.jwt.service
 
+import com.analog.alex.security.user.model.Role
 import com.analog.alex.security.user.model.User
 import com.analog.alex.security.utils.uuid
 import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
@@ -17,7 +17,7 @@ import java.util.Date
 class JwtService {
     private val logger = LoggerFactory.getLogger(JwtService::class.java)
 
-    /**
+    /*
      * The key should be configured externally to the system and consumed as a configuration.
      * In a scalable scenario involving multiple PODs, it would be unfeasible for each applications instance to
      *   have its own secret key
@@ -27,6 +27,14 @@ class JwtService {
     private fun getExpiry(): Date = Date.from(
         Instant.now().plus(Duration.ofMinutes(10))
     )
+
+    class JwtBodyClaims(map: Map<String, Any>) {
+        val usr: String    by map
+        val rls: Set<Role> by map
+        val sub: String    by map
+        val iss: String    by map
+        val jti: String    by map
+    }
 
     // ----------------------------
 
@@ -47,9 +55,9 @@ class JwtService {
             .compact()
     }
 
-    fun parse(jwt: String): Claims {
+    fun parse(jwt: String): JwtBodyClaims {
         val parsed = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jwt)
         logger.debug("Validated JWT: '$parsed'")
-        return parsed.body
+        return JwtBodyClaims(parsed.body)
     }
 }

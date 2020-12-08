@@ -49,20 +49,18 @@ class ProductController(
     )
 
     @PutMapping(
-        value = ["/{id}"],
+        value = ["/{product}"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
     @ResponseStatus(HttpStatus.OK)
-    fun update(@PathVariable id: String, @RequestBody product: Product): Product {
-        val extant = productRepository.findById(id).orElseThrow {
-            EntityNotFoundException()
-        }
+    fun update(@PathVariable product: Product?, @RequestBody entity: Product): Product {
+        product ?: throw EntityNotFoundException()
 
-        return productRepository.save(product.copy(
-            id = extant.id!!,
-            createdDate = extant.createdDate,
-            modifiedDate = extant.modifiedDate
+        return productRepository.save(entity.copy(
+            id = product.id!!,
+            createdDate = product.createdDate,
+            modifiedDate = LocalDateTime.now()
         ))
     }
 

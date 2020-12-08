@@ -1,15 +1,15 @@
-package com.analog.alex.security.authentication
+package com.analog.alex.security.authentication.web
 
+import com.analog.alex.security.authentication.Action
+import com.analog.alex.security.authentication.AuthenticationFailedException
+import com.analog.alex.security.authentication.AuthenticationResult
 import com.analog.alex.security.authentication.jwt.service.JwtService
-import com.analog.alex.security.errors.AuthenticationFailedException
 import com.analog.alex.security.errors.UserDoesNotExistException
 import com.analog.alex.security.user.model.Role
 import com.analog.alex.security.user.model.User
 import com.analog.alex.security.user.model.UserCredentials
 import com.analog.alex.security.user.repository.UserRepository
 import com.analog.alex.security.utils.uuid
-import com.fasterxml.jackson.annotation.JsonInclude
-import io.jsonwebtoken.Claims
 import org.springframework.http.MediaType
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,7 +22,7 @@ import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("auth")
-class AuthController(
+class AuthenticationController(
     private val userRepository: UserRepository,
     private val jwtService: JwtService
 ) {
@@ -71,7 +71,5 @@ class AuthController(
         value = ["/validate"],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun validateUser(@RequestParam token: String): Claims {
-        return jwtService.parse(token)
-    }
+    fun validateUser(@RequestParam token: String) = jwtService.parse(token)
 }
