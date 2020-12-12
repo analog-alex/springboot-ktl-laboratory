@@ -31,3 +31,10 @@ A very simple example of how to access data via GraphQL. Data is stores in Mongo
 | `message-brokers` | [Go to branch](https://github.com/analog-alex/springboot-ktl-laboratory/tree/message-brokers)     |
 
 A very simple demonstration of `RabbitMQ` and `Kafka` integration with **Spring Boot**.
+
+### Message Brokers
+| Branch        | Link          |
+| ------------- |:-------------:| 
+| `spring-security` | [Go to branch](https://github.com/analog-alex/springboot-ktl-laboratory/tree/spring-security)     |
+
+A very simple demonstration of a basic authentication scenario with **Spring Security**.
