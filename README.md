@@ -32,7 +32,7 @@ A very simple example of how to access data via GraphQL. Data is stores in Mongo
 
 A very simple demonstration of `RabbitMQ` and `Kafka` integration with **Spring Boot**.
 
-### Message Brokers
+### Spring Security
 | Branch        | Link          |
 | ------------- |:-------------:| 
 | `spring-security` | [Go to branch](https://github.com/analog-alex/springboot-ktl-laboratory/tree/spring-security)     |
