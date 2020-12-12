@@ -1,6 +1,7 @@
 package com.analog.alex.security.authentication
 
 import com.fasterxml.jackson.annotation.JsonInclude
+import org.springframework.context.annotation.Configuration
 
 enum class Action(val value: String) {
     REGISTERED("REGISTRATION_COMPLETE"),

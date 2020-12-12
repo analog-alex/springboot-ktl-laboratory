@@ -29,11 +29,13 @@ class JwtService {
     )
 
     class JwtBodyClaims(map: Map<String, Any>) {
-        val usr: String    by map
-        val rls: Set<Role> by map
-        val sub: String    by map
-        val iss: String    by map
-        val jti: String    by map
+        val usr: String       by map
+        val rls: List<Role>   by map
+        val sub: String       by map
+        val iss: String       by map
+        val jti: String       by map
+
+        fun roles() = this.rls.toSet()
     }
 
     // ----------------------------

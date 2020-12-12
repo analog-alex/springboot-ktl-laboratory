@@ -24,10 +24,9 @@ import java.time.LocalDateTime
 @RequestMapping("auth")
 class AuthenticationController(
     private val userRepository: UserRepository,
-    private val jwtService: JwtService
+    private val jwtService: JwtService,
+    private val passwordEncoder: BCryptPasswordEncoder
 ) {
-    private val passwordEncoder = BCryptPasswordEncoder()
-
     @PostMapping(
         value = ["/register"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],

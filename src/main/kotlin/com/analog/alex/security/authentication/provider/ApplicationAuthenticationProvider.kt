@@ -35,7 +35,7 @@ class ApplicationAuthenticationProvider(
             jwt = token,
             userContext = UserContext(
                 username = claims.usr,
-                roles = claims.rls
+                roles = claims.roles()
             ),
             authorities = claims.rls.map { role -> SimpleGrantedAuthority("ROLE_$role") }
         )

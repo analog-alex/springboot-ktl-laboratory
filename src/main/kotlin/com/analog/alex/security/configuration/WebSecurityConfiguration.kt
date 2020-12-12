@@ -3,11 +3,13 @@ package com.analog.alex.security.configuration
 import com.analog.alex.security.authentication.jwt.filter.JwtFilter
 import com.analog.alex.security.authentication.provider.ApplicationAuthenticationProvider
 import com.analog.alex.security.authentication.provider.RestAuthenticationEntryPoint
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
 @Configuration
@@ -31,4 +33,7 @@ class WebSecurityConfiguration(
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.authenticationProvider(applicationAuthenticationProvider)
     }
+
+    @Bean
+    fun passwordEncoder(): BCryptPasswordEncoder = BCryptPasswordEncoder()
 }
