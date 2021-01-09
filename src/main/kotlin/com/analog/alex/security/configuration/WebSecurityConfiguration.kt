@@ -5,6 +5,7 @@ import com.analog.alex.security.authentication.provider.ApplicationAuthenticatio
 import com.analog.alex.security.authentication.provider.RestAuthenticationEntryPoint
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -23,7 +24,10 @@ class WebSecurityConfiguration(
         http.csrf().disable()
         http.addFilterAfter(JwtFilter(), BasicAuthenticationFilter::class.java)
         http.authorizeRequests()
-                .antMatchers("/auth/*").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET,    "/products").hasAnyRole("ADMIN", "BASIC")
+                .antMatchers(HttpMethod.POST,   "/products").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/products/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             .and()
             .httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint)

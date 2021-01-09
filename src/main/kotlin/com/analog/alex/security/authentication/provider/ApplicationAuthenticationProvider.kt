@@ -5,7 +5,9 @@ import com.analog.alex.security.authentication.MalformedTokenException
 import com.analog.alex.security.authentication.NoTokenException
 import com.analog.alex.security.authentication.jwt.filter.JwtAuthenticationToken
 import com.analog.alex.security.authentication.jwt.service.JwtService
+import com.analog.alex.security.user.model.Role
 import com.analog.alex.security.user.model.UserContext
+import com.analog.alex.security.utils.Constants
 import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.core.Authentication
@@ -22,11 +24,11 @@ class ApplicationAuthenticationProvider(
     override fun authenticate(authentication: Authentication): Authentication {
         val token = (authentication.credentials as? String)?.takeIf { it.isNotBlank() } ?: throw NoTokenException()
 
-        if (token.startsWith("Bearer ").not()) {
+        if (token.startsWith(Constants.TOKEN_PREFIX).not()) {
             throw MalformedTokenException()
         }
 
-        val claims = try { jwtService.parse(token) } catch (e: Exception) {
+        val claims = try { jwtService.parse(token.removePrefix(Constants.TOKEN_PREFIX)) } catch (e: Exception) {
             logger.debug("JWT parsing failed: ${e.message}")
             throw AuthenticationFailedException()
         }
@@ -35,7 +37,7 @@ class ApplicationAuthenticationProvider(
             jwt = token,
             userContext = UserContext(
                 username = claims.usr,
-                roles = claims.roles()
+                roles = claims.rls.map { asStr -> Role.valueOf(asStr) }.toSet()
             ),
             authorities = claims.rls.map { role -> SimpleGrantedAuthority("ROLE_$role") }
         )

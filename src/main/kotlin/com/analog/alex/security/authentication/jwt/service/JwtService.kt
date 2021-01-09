@@ -3,7 +3,6 @@ package com.analog.alex.security.authentication.jwt.service
 import com.analog.alex.security.user.model.Role
 import com.analog.alex.security.user.model.User
 import com.analog.alex.security.utils.uuid
-import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
@@ -29,13 +28,11 @@ class JwtService {
     )
 
     class JwtBodyClaims(map: Map<String, Any>) {
-        val usr: String       by map
-        val rls: List<Role>   by map
-        val sub: String       by map
-        val iss: String       by map
-        val jti: String       by map
-
-        fun roles() = this.rls.toSet()
+        val usr: String         by map
+        val rls: List<String>   by map
+        val sub: String         by map
+        val iss: String         by map
+        val jti: String         by map
     }
 
     // ----------------------------
