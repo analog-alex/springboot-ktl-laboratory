@@ -1,6 +1,6 @@
 # Spring Boot Laboratory
 
-![Dexter](https://i.ebayimg.com/images/g/ntAAAOSw0rdcAEgr/s-l300.jpg)
+![Dexter](assets/s-l300.jpg)
 
 ## Introduction
 A collection of micro **Spring Boot** (v2.0.0+) projects, in the **Kotlin** programming language, that exemplify common usages of the framework. Each project counts a an experiment in the science of **Spring Boot**.
