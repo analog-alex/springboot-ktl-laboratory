@@ -25,6 +25,7 @@ class WebSecurityConfiguration(
         http.addFilterAfter(JwtFilter(), BasicAuthenticationFilter::class.java)
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers(HttpMethod.GET,    "/products").hasAnyRole("ADMIN", "BASIC")
                 .antMatchers(HttpMethod.POST,   "/products").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/products/**").hasRole("ADMIN")

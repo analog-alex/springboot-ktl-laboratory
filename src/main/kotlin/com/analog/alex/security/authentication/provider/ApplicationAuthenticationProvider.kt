@@ -7,6 +7,7 @@ import com.analog.alex.security.authentication.jwt.filter.JwtAuthenticationToken
 import com.analog.alex.security.authentication.jwt.service.JwtService
 import com.analog.alex.security.user.model.Role
 import com.analog.alex.security.user.model.UserContext
+import com.analog.alex.security.user.repository.UserRepository
 import com.analog.alex.security.utils.Constants
 import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationProvider
@@ -17,6 +18,7 @@ import java.lang.Exception
 
 @Component
 class ApplicationAuthenticationProvider(
+    private val userRepository: UserRepository,
     private val jwtService: JwtService
 ) : AuthenticationProvider {
     private val logger = LoggerFactory.getLogger(AuthenticationProvider::class.java)
@@ -33,14 +35,18 @@ class ApplicationAuthenticationProvider(
             throw AuthenticationFailedException()
         }
 
-        return UserToken(
-            jwt = token,
-            userContext = UserContext(
-                username = claims.usr,
-                roles = claims.rls.map { asStr -> Role.valueOf(asStr) }.toSet()
-            ),
-            authorities = claims.rls.map { role -> SimpleGrantedAuthority("ROLE_$role") }
-        )
+        return userRepository.findByUsername(claims.usr)?.let { user ->
+            logger.info("Authenticated {}", user)
+            UserToken(
+                jwt = token,
+                userContext = UserContext(
+                    username = claims.usr,
+                    roles = claims.rls.map { asStr -> Role.valueOf(asStr) }.toSet()
+                ),
+                authorities = claims.rls.map { role -> SimpleGrantedAuthority("ROLE_$role") }
+            )
+        } ?: throw AuthenticationFailedException()
+
     }
 
     override fun supports(authentication: Class<*>): Boolean {

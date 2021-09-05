@@ -121,6 +121,6 @@ class AuthenticationControllerTest {
                 )
             )
         }
-            .isFailure().isInstanceOf(DuplicateKeyException::class)
+            .isFailure().isInstanceOf(DuplicatedUsernameException::class)
     }
 }

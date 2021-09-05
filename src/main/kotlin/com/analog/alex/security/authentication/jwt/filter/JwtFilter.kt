@@ -14,7 +14,7 @@ class JwtFilter : GenericFilterBean() {
         val authHeader = httpRequest.getHeader(Constants.AUTH_HEADER)
 
         /*
-         * Here we simple pass whatever is placed in the 'Authorization' header, if anything.
+         * Here we simply pass whatever is placed in the 'Authorization' header, if anything at all.
          * We don't concern ourselves here with any kind of validation or authentication; that
          *   is the responsibility of the Authentication Manager.
          */
